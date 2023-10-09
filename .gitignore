@@ -1,0 +1,13 @@
+.DS_Store
+**/__pycache__
+**/.idea
+**/venv
+**/save
+**/models
+**/wandb
+*.tar
+*.gz
+*.png
+*.out
+*.log
+ds_compare.py
