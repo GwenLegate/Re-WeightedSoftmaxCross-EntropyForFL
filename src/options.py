@@ -29,7 +29,7 @@ def args_parser():
     parser.add_argument('--local_bs', type=int, default=64, help="local batch size: B")
     parser.add_argument('--global_lr', type=float, default=1,
                         help='learning rate for global model, always 1 for FedAvg version')
-    parser.add_argument('--client_lr', type=float, default=0.1, help='learning rate for client models')
+    parser.add_argument('--client_lr', type=float, default=0.03, help='learning rate for client models')
     parser.add_argument('--reg', type=float, default=1e-5, help="L2 regularization strength")
     parser.add_argument('--momentum', type=float, default=0.97, help='SGD momentum, momentum parameter has no effect on'
                                                                      '\FedAvg, needs to be set to >0 for FedAvgM. '
@@ -41,7 +41,6 @@ def args_parser():
                         help='model name, options: mlp, cnn_a, cnn_b, cnn_c, lenet, resnet18, resnet34')
     parser.add_argument('--width', type=int, default=2, help='model width factor')
     parser.add_argument('--mask', type=bool, default=False, help='enables logit masking for clients (new soft mask)')
-    #parser.add_argument('--freeze', type=bool, default=False, help='freezes weights for indices before softmax for all indices outside the client distribution')
     parser.add_argument('--kernel_num', type=int, default=9, help='number of each kind of kernel')
     parser.add_argument('--kernel_sizes', type=str, default='3,4,5',
                         help='comma-separated kernel size to use for convolution')
