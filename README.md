@@ -39,8 +39,8 @@ python src/fed_nova.py
 ### Some Baseline Results for Comparison 
 | Description | Command     | Accuracy    | 
 | ----|----------- | ----------- |
-|Default (see definition in [Examples](###Examples))|```python src/federated_main.py```|83.6|
-|Default + WSM with batch norm (see definition in [Examples](###Examples))|```python src/federated_main.py --mask=True --norm=batch_norm```|85.7|
+|Default (see definition in [Examples](### Examples))|```python src/federated_main.py```|83.6|
+|Default + WSM with batch norm (see definition in [Examples](### Examples))|```python src/federated_main.py --mask=True --norm=batch_norm```|85.7|
 |FedProx with mu=1.1 for the cifar100 dataset, with WSM, 30 clients and  trained for 2000 global rounds|```python src/fed_prox.py --epochs=2000 --mask=True --dataset=cifar100 --num_clients=30 --mu=1.1```|56.2|
 |FedAvg+WSM with 20 clients and 50% client participation, alpha of the Dirichlet distribution is 0.5, batch norm, trained for 300 rounds|```python src/federated_main.py --mask=True --alpha=0.5 --epochs=300 --num_clients=20 --frac=0.5 --norm=batch_norm```|78.93|
 
@@ -101,13 +101,13 @@ If you want to run WandB in offline mode the flag ```--offline=True``` needs to 
 
 ## Baselines
 Based off of [Federated Optimization in Heterogeneous Networks](https://arxiv.org/abs/1812.06127), 
-[fed_prox.py](https://github.com/GwenLegate/Re-WeightedSoftmaxCross-EntropyForFL/blob/master/fed_prox.py) implemments the 
-experiments using FedProx algorithm. (NOTE: Results unstable, not ready for use)
+[fed_prox.py](https://github.com/GwenLegate/Re-WeightedSoftmaxCross-EntropyForFL/blob/master/src/fed_prox.py) implemments the 
+experiments using FedProx algorithm.
 
 Based off of [SCAFFOLD: Stochastic Controlled Averaging for Federated Learning](https://arxiv.org/abs/1910.06378), 
-[scaffold.py](https://github.com/GwenLegate/Re-WeightedSoftmaxCross-EntropyForFL/blob/master/scaffold.py) implemments the 
+[scaffold.py](https://github.com/GwenLegate/Re-WeightedSoftmaxCross-EntropyForFL/blob/master/src/scaffold.py) implemments the 
 experiments using SCAFFOLD algorithm. 
 
 Based off of [Tackling the Objective Inconsistency Problem in Heterogeneous Federated Optimization](https://arxiv.org/abs/2007.07481), 
-[.py](https://github.com/GwenLegate/Re-WeightedSoftmaxCross-EntropyForFL/blob/master/fed_nova.py) implemments the 
+[fed_nova.py](https://github.com/GwenLegate/Re-WeightedSoftmaxCross-EntropyForFL/blob/master/src/fed_nova.py) implemments the 
 experiments using FedNova algorithm. 
