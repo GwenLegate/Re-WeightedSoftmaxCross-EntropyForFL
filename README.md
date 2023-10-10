@@ -5,6 +5,54 @@ Forgetting in Federated Learning](https://browse.arxiv.org/pdf/2304.05260.pdf). 
 using a re-weighted softmax (WSM). WSM weights the importance of contributions from client labels based on the frequency 
 with which they appear in the client dataset. 
 
+## Baselines
+Based off of [Federated Optimization in Heterogeneous Networks](https://arxiv.org/abs/1812.06127), 
+[fed_prox.py](https://github.com/GwenLegate/federatedLearningWithLogitMask/blob/master/fed_prox.py) implemments the 
+experiments using FedProx algorithm. (NOTE: Results unstable, not ready for use)
+
+Based off of [SCAFFOLD: Stochastic Controlled Averaging for Federated Learning](https://arxiv.org/abs/1910.06378), 
+[scaffold.py](https://github.com/GwenLegate/federatedLearningWithLogitMask/blob/master/fed_avg_m.py) implemments the 
+experiments using SCAFFOLD algorithm. (NOTE: Results unstable, not ready for use)
+
+## Running the experiments
+
+### Examples
+* To run the experiment using the default values:
+    * model=ResNet18
+    * dataset=cifar10
+    * epochs=4000
+    * local batch size=64
+    * number of local training rounds=3
+    * client lr=0.03
+    * logits not masked
+    * normalization technique: group norm
+    * non-iid data split according to a dirichlet distribution parameterized by alpha=0.1
+```
+python src/federated_main.py
+```
+* To run the experiment with the default settings and WSM:
+```
+python src/federated_main.py --mask=True
+```
+* To run baselines with default parameters:
+```
+python src/scaffold.py
+```
+```
+python src/fed_prox.py
+```
+```
+python src/fed_nova.py
+```
+
+### Some Baseline Results for Comparison 
+| Description | Command     | Accuracy    | 
+| ----|----------- | ----------- |
+|Default (see definition in [Examples](###Examples))|```python src/federated_main.py```|83.6|
+|Default + WSM with batch norm (see definition in [Examples](###Examples))|```python src/federated_main.py --mask=True --norm=batch_norm```|85.7|
+|FedProx with mu=1.1 for the cifar100 dataset, with WSM, 30 clients and  trained for 2000 global rounds|```python src/fed_prox.py --epochs=2000 --mask=True --dataset=cifar100 --num_clients=30 --mu=1.1```|56.2|
+|FedAvg+WSM with 20 clients and 50% client participation, alpha of the Dirichlet distribution is 0.5, batch norm, trained for 300 rounds|```python src/federated_main.py --mask=True --alpha=0.5 --epochs=300 --num_clients=20 --frac=0.5 --norm=batch_norm```|78.93|
+
 ## Requirments
 Install all the packages from requirments.txt
 * Python3
@@ -59,51 +107,3 @@ To use WandB:
 * set ```--wandb_run_name ="informitive-run-name"``` (so you can distinguish different runs)
 
 If you want to run WandB in offline mode the flag ```--offline=True``` needs to be set, the current default is False
-
-## Baselines
-Based off of [Federated Optimization in Heterogeneous Networks](https://arxiv.org/abs/1812.06127), 
-[fed_prox.py](https://github.com/GwenLegate/federatedLearningWithLogitMask/blob/master/fed_prox.py) implemments the 
-experiments using FedProx algorithm. (NOTE: Results unstable, not ready for use)
-
-Based off of [SCAFFOLD: Stochastic Controlled Averaging for Federated Learning](https://arxiv.org/abs/1910.06378), 
-[scaffold.py](https://github.com/GwenLegate/federatedLearningWithLogitMask/blob/master/fed_avg_m.py) implemments the 
-experiments using SCAFFOLD algorithm. (NOTE: Results unstable, not ready for use)
-
-## Running the experiments
-
-###Examples
-* To run the experiment using the default values:
-    * model=ResNet18
-    * dataset=cifar10
-    * epochs=4000
-    * local batch size=64
-    * number of local training rounds=3
-    * client lr=0.03
-    * logits not masked
-    * normalization technique: group norm
-    * non-iid data split according to a dirichlet distribution parameterized by alpha=0.1
-```
-python src/federated_main.py
-```
-* To run the experiment with the default settings and WSM:
-```
-python src/federated_main.py --mask=True
-```
-* To run baselines with default parameters:
-```
-python src/scaffold.py
-```
-```
-python src/fed_prox.py
-```
-```
-python src/fed_nova.py
-```
-
-###Some Baseline Results for Comparison 
-| Description | Command     | Accuracy    | 
-| ----|----------- | ----------- |
-|Default (see definition in [Examples](###Examples))|```python src/federated_main.py```|83.6|
-|Default + WSM with batch norm (see definition in [Examples](###Examples))|```python src/federated_main.py --mask=True --norm=batch_norm```|85.7|
-|FedProx with mu=1.1 for the cifar100 dataset, with WSM, 30 clients and  trained for 2000 global rounds|```python src/fed_prox.py --epochs=2000 --mask=True --dataset=cifar100 --num_clients=30 --mu=1.1```|56.2|
-|FedAvg+WSM with 20 clients and 50% client participation, alpha of the Dirichlet distribution is 0.5, batch norm, trained for 300 rounds|```python src/federated_main.py --mask=True --alpha=0.5 --epochs=300 --num_clients=20 --frac=0.5 --norm=batch_norm```|78.93|
