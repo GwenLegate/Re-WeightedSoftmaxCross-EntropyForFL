@@ -111,3 +111,5 @@ experiments using SCAFFOLD algorithm.
 Based off of [Tackling the Objective Inconsistency Problem in Heterogeneous Federated Optimization](https://arxiv.org/abs/2007.07481), 
 [fed_nova.py](https://github.com/GwenLegate/Re-WeightedSoftmaxCross-EntropyForFL/blob/master/src/fed_nova.py) implemments the 
 experiments using FedNova algorithm. 
+
+Thank you to [NIID-Bench](https://github.com/Xtra-Computing/NIID-Bench/tree/main) whose baseline implementations we modified for our experiments.
