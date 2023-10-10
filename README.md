@@ -5,15 +5,6 @@ Forgetting in Federated Learning](https://browse.arxiv.org/pdf/2304.05260.pdf). 
 using a re-weighted softmax (WSM). WSM weights the importance of contributions from client labels based on the frequency 
 with which they appear in the client dataset. 
 
-## Baselines
-Based off of [Federated Optimization in Heterogeneous Networks](https://arxiv.org/abs/1812.06127), 
-[fed_prox.py](https://github.com/GwenLegate/federatedLearningWithLogitMask/blob/master/fed_prox.py) implemments the 
-experiments using FedProx algorithm. (NOTE: Results unstable, not ready for use)
-
-Based off of [SCAFFOLD: Stochastic Controlled Averaging for Federated Learning](https://arxiv.org/abs/1910.06378), 
-[scaffold.py](https://github.com/GwenLegate/federatedLearningWithLogitMask/blob/master/fed_avg_m.py) implemments the 
-experiments using SCAFFOLD algorithm. (NOTE: Results unstable, not ready for use)
-
 ## Running the experiments
 
 ### Examples
@@ -107,3 +98,16 @@ To use WandB:
 * set ```--wandb_run_name ="informitive-run-name"``` (so you can distinguish different runs)
 
 If you want to run WandB in offline mode the flag ```--offline=True``` needs to be set, the current default is False
+
+## Baselines
+Based off of [Federated Optimization in Heterogeneous Networks](https://arxiv.org/abs/1812.06127), 
+[fed_prox.py](https://github.com/GwenLegate/Re-WeightedSoftmaxCross-EntropyForFL/blob/master/fed_prox.py) implemments the 
+experiments using FedProx algorithm. (NOTE: Results unstable, not ready for use)
+
+Based off of [SCAFFOLD: Stochastic Controlled Averaging for Federated Learning](https://arxiv.org/abs/1910.06378), 
+[scaffold.py](https://github.com/GwenLegate/Re-WeightedSoftmaxCross-EntropyForFL/blob/master/scaffold.py) implemments the 
+experiments using SCAFFOLD algorithm. 
+
+Based off of [Tackling the Objective Inconsistency Problem in Heterogeneous Federated Optimization](https://arxiv.org/abs/2007.07481), 
+[.py](https://github.com/GwenLegate/Re-WeightedSoftmaxCross-EntropyForFL/blob/master/fed_nova.py) implemments the 
+experiments using FedNova algorithm. 
